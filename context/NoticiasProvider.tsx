@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, createContext, ReactNode } from "react";
 
 export interface NoticiasContextProps {
