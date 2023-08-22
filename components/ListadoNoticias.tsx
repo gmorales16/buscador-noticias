@@ -1,3 +1,5 @@
+"use client";
+
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import useNoticias from "@/hooks/useNoticias";
