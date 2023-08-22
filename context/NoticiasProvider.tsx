@@ -33,7 +33,7 @@ const NoticiasProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     };
     consultarApi();
   }, [categoria]);
-  // Cambiar de pagina
+  //Llamado Cambiar de pagina
   useEffect(() => {
     const consultarApi = async () => {
       try {
