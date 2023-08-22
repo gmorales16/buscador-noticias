@@ -1,6 +1,3 @@
-"use client";
-
-import axios from "axios";
 import React, { useState, useEffect, createContext, ReactNode } from "react";
 
 export interface NoticiasContextProps {
@@ -19,13 +16,16 @@ const NoticiasProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [noticias, setNoticias] = useState<any[]>([]);
   const [pagina, setPagina] = useState(1);
   const [totalNoticias, setTotalNoticias] = useState(0);
-  //Primer Llamado al abrir la pagina
+
   useEffect(() => {
     const consultarApi = async () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
         const url = `https://newsapi.org/v2/top-headlines?country=us&category=${categoria}&apiKey=${apiKey}`;
-        const { data } = await axios.get(url);
+        const response = await fetch(url);
+        const data = await response.json();
+
         setNoticias(data.articles);
         setTotalNoticias(data.totalResults);
         setPagina(1);
@@ -35,13 +35,15 @@ const NoticiasProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     };
     consultarApi();
   }, [categoria]);
-  // Cambiar de pagina
+
   useEffect(() => {
     const consultarApi = async () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
         const url = `https://newsapi.org/v2/top-headlines?country=us&page=${pagina}&category=${categoria}&apiKey=${apiKey}`;
-        const { data } = await axios.get(url);
+        const response = await fetch(url);
+        const data = await response.json();
+
         setNoticias(data.articles);
         setTotalNoticias(data.totalResults);
       } catch (error) {
