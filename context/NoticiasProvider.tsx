@@ -22,7 +22,7 @@ const NoticiasProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const consultarApi = async () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-        const url = `http://newsapi.org/v2/top-headlines?country=us&category=${categoria}&apiKey=${apiKey}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=us&category=${categoria}&apiKey=${apiKey}`;
         const { data } = await axios.get(url);
         setNoticias(data.articles);
         setTotalNoticias(data.totalResults);
@@ -33,12 +33,12 @@ const NoticiasProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     };
     consultarApi();
   }, [categoria]);
-  //Llamado Cambiar de pagina
+  // Cambiar de pagina
   useEffect(() => {
     const consultarApi = async () => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-        const url = `http://newsapi.org/v2/top-headlines?country=us&page=${pagina}&category=${categoria}&apiKey=${apiKey}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=us&page=${pagina}&category=${categoria}&apiKey=${apiKey}`;
         const { data } = await axios.get(url);
         setNoticias(data.articles);
         setTotalNoticias(data.totalResults);
